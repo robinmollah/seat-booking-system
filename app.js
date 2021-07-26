@@ -36,7 +36,6 @@ app.get('/api/login', (req, res) => {
 			} else {
 				res.status(403).send("Wrong username or password");
 			}
-
 		}
 	});
 });
@@ -47,7 +46,9 @@ app.post('/api/signup', (req, res) => {
 			res.send(JSON.stringify(err))
 			return;
 		}
-		res.send(data);
+		res.send({
+			success: true
+		});
 	});
 })
 

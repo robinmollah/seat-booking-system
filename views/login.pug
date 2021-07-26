@@ -20,3 +20,21 @@ style.
         height: 2.5em;
         width: 50%;
     }
+
+script.
+
+
+    document.getElementById("idLogin").addEventListener("click", (event) => {
+        const email = document.getElementById("idEmail").value;
+        const password = document.getElementById("idPassword").value;
+
+        fetch(`http://127.0.0.1:3002/api/login/?email=${email}&password=${password}`).then((res) => res.json())
+            .then(res => {
+            	if(res.success){
+            		window.location.href = "/login";
+                }
+            })
+            .catch((err) => {
+            console.error(err);
+        })
+    })
