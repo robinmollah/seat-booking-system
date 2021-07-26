@@ -31,12 +31,6 @@ let DB = (function () {
                     callback(null, err);
                 }
             });
-
-            connection.on('error', function (err) {
-                connection.release();
-                callback(null, err);
-                throw err;
-            });
         });
     };
 
