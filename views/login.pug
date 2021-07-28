@@ -1,40 +1,40 @@
-h1 Login
-div(style="font-size: 2em;")
-    span Email
-    br
-    input(id="idEmail" name="email" type="email")
-    br
-    span Password
-    br
-    input(id="idPassword" name="password" type="password")
-    br
-    button(id="idLogin") Login
-    br
-    br
-div
-    span Don't have account?
-    a(href="/signup") Create an account
+extends layout
 
-style.
-    input {
-        height: 2.5em;
-        width: 50%;
-    }
+block content
+    div(style="font-size: 2em;")
+        span Email
+        br
+        input(id="idEmail" name="email" type="email")
+        br
+        span Password
+        br
+        input(id="idPassword" name="password" type="password")
+        br
+        button(id="idLogin") Login
+        br
+        br
+    div
+        span Don't have account?
+        a(href="/signup") Create an account
 
-script.
+    style.
+        input {
+            height: 2.5em;
+            width: 50%;
+        }
 
+    script.
+        document.getElementById("idLogin").addEventListener("click", (event) => {
+            const email = document.getElementById("idEmail").value;
+            const password = document.getElementById("idPassword").value;
 
-    document.getElementById("idLogin").addEventListener("click", (event) => {
-        const email = document.getElementById("idEmail").value;
-        const password = document.getElementById("idPassword").value;
-
-        fetch(`http://127.0.0.1:3002/api/login/?email=${email}&password=${password}`).then((res) => res.json())
-            .then(res => {
-            	if(res.success){
-            		window.location.href = "/login";
-                }
+            fetch(`http://127.0.0.1:3002/api/login/?email=${email}&password=${password}`).then((res) => res.json())
+                .then(res => {
+                    if(res.success){
+                        window.location.href = "/login";
+                    }
+                })
+                .catch((err) => {
+                console.error(err);
             })
-            .catch((err) => {
-            console.error(err);
         })
-    })

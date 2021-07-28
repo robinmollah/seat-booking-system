@@ -1,3 +1,17 @@
-h1 Dashboard
-div
+extends layout
 
+block content
+    div Kichu ekta
+    div= JSON.stringify(sections)
+    table(border="1")
+        each value, i in sections
+            tr
+                td= value.id
+                td= value.name
+                td= value.time
+                td= value.seats + " seats remaining"
+
+    style.
+        td {
+            padding: 4px;
+        }

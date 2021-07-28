@@ -4,14 +4,16 @@ if(process.env.NODE_ENV !== 'production'){
 const port = process.env.PORT | 3002;
 const express = require('express')
 const userController = require("./src/db/controllers/users");
+const sectionsController = require("./src/db/controllers/sections");
 const app = express()
+const api = require("./routes/api");
 
 app.set('view engine', 'pug');
 app.use(express.static('public'));
 app.use(express.json())
 
 app.get('/', (req, res) => {
-	res.render('login', {});
+	res.render('login', {title: "Login"});
 })
 
 app.get('/signup', (req, res) => {
@@ -19,7 +21,9 @@ app.get('/signup', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
-	res.render('index', {});
+	sectionsController.get((data, err) => {
+		res.render('index', {title: "Dashboard", sections: data, admin: false});
+	})
 })
 
 app.get('/api/login', (req, res) => {
@@ -51,6 +55,8 @@ app.post('/api/signup', (req, res) => {
 		});
 	});
 })
+
+app.use('/api', api);
 
 app.listen(port, () => {
 	console.log(`App listening at http://localhost:${port}`);
