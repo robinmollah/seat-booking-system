@@ -1,8 +1,6 @@
 extends layout
 
 block content
-    div Kichu ekta
-    div= JSON.stringify(sections)
     table(border="1")
         each value, i in sections
             tr
@@ -10,6 +8,9 @@ block content
                 td= value.name
                 td= value.time
                 td= value.seats + " seats remaining"
+                td
+                    script.
+                        document.write(`<a href='/api/sections/take?email=${window.localStorage.getItem("email")}&section=#{value.id}'>Take</a>`)
 
     style.
         td {

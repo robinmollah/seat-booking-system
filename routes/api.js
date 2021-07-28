@@ -13,12 +13,33 @@ router.get("/sections", (req, res) => {
 			return;
 		}
 		res.json({
-			success: false,
+			success: true,
 			message: data
 		});
-
 	})
+});
 
+router.get("/sections/take", (req, res) => {
+	if(!req.query.email || !req.query.section){
+		res.json({
+			success: false,
+			message: "parameter email or section is not provided"
+		})
+		return;
+	}
+	sectionsController.take(req.query.email, req.query.section, (data, err) => {
+		if(err){
+			res.json({
+				success: false,
+				message: err
+			});
+			return;
+		}
+		res.json({
+			success: true,
+			message: data
+		})
+	})
 });
 
 module.exports = router;
