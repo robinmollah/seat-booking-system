@@ -11,7 +11,10 @@ block content
                 td
                     script.
                         document.write(`<a href='/api/sections/take?email=${window.localStorage.getItem("email")}&section=#{value.id}'>Take</a>`)
-
+                td
+                    script.
+                        if(window.localStorage.getItem("email") === "admin")
+                            document.write(`<a href='/api/sections/view?section=#{value.id}'>View</a>`)
     style.
         td {
             padding: 4px;

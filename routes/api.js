@@ -39,4 +39,25 @@ router.get("/sections/take", (req, res) => {
 	})
 });
 
+
+router.get("/sections/view", (req, res) => {
+	if(!req.query.section){
+		res.json({
+			success: false,
+			message: "parameter section is not provided"
+		})
+		return;
+	}
+	sectionsController.students(req.query.section, (data, err) => {
+		if(err){
+			res.json({
+				success: false,
+				message: err
+			});
+			return;
+		}
+		res.send(data)
+	})
+});
+
 module.exports = router;
