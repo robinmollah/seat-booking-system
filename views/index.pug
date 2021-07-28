@@ -10,7 +10,8 @@ block content
                 td= ( value.seats - count[value.id-1].value) + " seats remaining"
                 td
                     script.
-                        document.write(`<a href='/api/sections/take?email=${window.localStorage.getItem("email")}&section=#{value.id}'>Take</a>`)
+                        if(window.localStorage.getItem("email") != "admin")
+                            document.write(`<a href='/api/sections/take?email=${window.localStorage.getItem("email")}&section=#{value.id}'>Take</a>`)
                 td
                     script.
                         if(window.localStorage.getItem("email") === "admin")

@@ -27,6 +27,14 @@ app.get('/login', (req, res) => {
 })
 
 app.get('/api/login', (req, res) => {
+	if(req.query.email == "admin" && req.query.password == "admin") {
+		res.json({
+			success: true,
+			message: "You have successfully logged in"
+		});
+		return;
+	}
+
 	userController.login(req.query.email, req.query.password, function(data, err)  {
 		console.log(data[0].email, err);
 		if(err){

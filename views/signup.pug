@@ -42,8 +42,8 @@ script.
 			body: JSON.stringify({email, password, name, sid})
 		}).then(res => res.json()).then(
 			res => {
-                if(res.success){
-                	window.location = "/";
-                }
+				if(res.success){
+					window.location = "/";
+				}
 			});
 	});
