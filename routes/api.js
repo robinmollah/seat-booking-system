@@ -35,10 +35,7 @@ router.get("/sections/take", (req, res) => {
 			});
 			return;
 		}
-		res.json({
-			success: true,
-			message: data
-		})
+		res.render('redirector', {destination: '/login'})
 	})
 });
 

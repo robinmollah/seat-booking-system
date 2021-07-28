@@ -22,7 +22,7 @@ app.get('/signup', (req, res) => {
 
 app.get('/login', (req, res) => {
 	sectionsController.get((data, err) => {
-		res.render('index', {title: "Dashboard", sections: data, admin: false});
+		res.render('index', {title: "Dashboard", sections: data.sections, count: data.count, admin: false});
 	})
 })
 

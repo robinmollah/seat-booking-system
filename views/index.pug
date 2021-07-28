@@ -7,7 +7,7 @@ block content
                 td= value.id
                 td= value.name
                 td= value.time
-                td= value.seats + " seats remaining"
+                td= ( value.seats - count[value.id-1].value) + " seats remaining"
                 td
                     script.
                         document.write(`<a href='/api/sections/take?email=${window.localStorage.getItem("email")}&section=#{value.id}'>Take</a>`)
